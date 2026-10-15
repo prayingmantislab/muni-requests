@@ -6,6 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using RA_MuniAnnouncements.Api.Clients;
 using RA_MuniAnnouncements.Api.Controllers;
+using RA_MuniAnnouncements.Api.ErrorHandling;
 using RA_MuniAnnouncements.Api.Repositories;
 using RA_MuniAnnouncements.Api.Services;
 
@@ -13,6 +14,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddProblemDetails(); // שגיאות בפורמט אחיד, בלי חשיפת stack trace
+builder.Services.AddExceptionHandler<FormsUnavailableExceptionHandler>(); // כשל בטפסים ← 503 (סדר ההרשמה = סדר הניסיון)
 
 // ---------- Dependency Injection ----------
 // כדי לעבור למימוש אמיתי מחליפים רק את השורות האלה (ראה README).

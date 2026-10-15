@@ -57,7 +57,7 @@ pnpm exec ng serve --port 4301
 ## בדיקות
 
 ```bash
-dotnet test                                  # 9 בדיקות יחידה ללוגיקת הנרמול (xUnit + Moq, שעון מקובע)
+dotnet test                                  # 11 בדיקות יחידה: לוגיקת הנרמול והמרת כשל ל-503 (xUnit + Moq, שעון מקובע)
 cd client && pnpm exec ng test --watch=false # 5 בדיקות Angular
 ```
 
@@ -73,6 +73,7 @@ cd client && pnpm exec ng test --watch=false # 5 בדיקות Angular
 | טופס/רשות שלא בקטלוג | הבקשה לא מוחזרת ונכתבת ללוג |
 | תאריכים | נשמרים כ-UTC, מוצגים `dd/MM/yyyy` בשעון ישראל |
 | קריאה לפעולה | הרכיב משדר אירוע `actionRequested`; האזור האישי קובע לאן לנווט |
+| כשל במערכת הטפסים | `IFormsClient` זורק `FormsServiceUnavailableException`; `IExceptionHandler` מחזיר 503 (ProblemDetails + `Retry-After`) ולא רשימה ריקה. הלוג ללא ת"ז |
 | טוקן | JWT Bearer. בייצור יש להחליף את המפתח הסימטרי ב-`Authority` של האזור האישי |
 
 ## מה שלא כלול (בכוונה)

@@ -22,6 +22,7 @@ public class MyRequestsController : ControllerBase
     [HttpGet]
     [ProducesResponseType<MyRequestsResponse>(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status503ServiceUnavailable)]
     public async Task<ActionResult<MyRequestsResponse>> Get(CancellationToken ct)
     {
         // הזהות נלקחת מהטוקן בלבד: אין פרמטר ת"ז ב-URL (דרישה 1).
