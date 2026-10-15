@@ -1,0 +1,16 @@
+.shell-header {
+  padding: 0.75rem 1rem;
+  background: #0b2b57;
+  color: #fff;
+}
+
+// קישור דילוג לנגישות מקלדת: נראה רק כשמתמקדים בו
+.skip-link {
+  position: absolute;
+  inset-inline-start: 0.5rem;
+  inset-block-start: -3rem;
+  padding: 0.5rem 1rem;
+  background: #fff;
+  color: #000;
+  &:focus { inset-block-start: 0.5rem; z-index: 10; }
+}

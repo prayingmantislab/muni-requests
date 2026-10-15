@@ -1,0 +1,121 @@
+// צבעים עם ניגודיות AA מול רקע לבן. מאפיינים לוגיים (inline/block) כדי שה-RTL יעבוד בלי טריקים.
+:host {
+  --text: #1b1b1f;
+  --muted: #555a65;
+  --border: #c9ced8;
+  --action: #b42318;
+  --action-bg: #fef3f2;
+  --overdue-bg: #fff4e5;
+  --overdue-text: #7a2e0e;
+  --primary: #1d4ed8;
+  --focus: #0b57d0;
+
+  display: block;
+  color: var(--text);
+}
+
+.my-requests {
+  max-inline-size: 60rem;
+  margin-inline: auto;
+  padding: 1rem; // 16px gutter גם בנייד
+}
+
+h2 { margin-block: 0 1rem; font-size: 1.5rem; }
+
+.message {
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+
+  &--error { border-color: var(--action); background: var(--action-bg); }
+  p { margin-block: 0 0.75rem; }
+}
+
+// רשימה רספונסיבית: עמודה אחת בנייד, כמה עמודות כשיש מקום.
+.list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card {
+  block-size: 100%;
+  box-sizing: border-box;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  background: #fff;
+
+  // הדגשה בולטת: פס צבעוני + רקע + באנר טקסט (לא רק צבע).
+  &--action {
+    border-color: var(--action);
+    border-inline-start-width: 0.5rem;
+    background: var(--action-bg);
+  }
+
+  &__title { margin-block: 0 0.25rem; font-size: 1.125rem; }
+  &__authority { margin-block: 0 0.75rem; color: var(--muted); }
+  &__status { margin-block: 0 0.75rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+  &__dates {
+    margin: 0 0 0.75rem;
+    div { display: flex; gap: 0.5rem; }
+    dt { color: var(--muted); }
+    dt::after { content: ':'; }
+    dd { margin: 0; }
+  }
+}
+
+.banner {
+  margin: 0 0 0.5rem;
+  font-weight: 700;
+  color: var(--action);
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.125rem 0.625rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 0.875rem;
+  background: #fff;
+
+  &--overdue {
+    border-color: var(--overdue-text);
+    background: var(--overdue-bg);
+    color: var(--overdue-text);
+    font-weight: 600;
+  }
+}
+
+.btn {
+  min-block-size: 2.75rem; // יעד מגע נוח (44px)
+  padding-inline: 1.25rem;
+  border: 1px solid var(--text);
+  border-radius: 0.5rem;
+  background: #fff;
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+
+  &--primary {
+    border-color: var(--action);
+    background: var(--action);
+    color: #fff;
+    font-weight: 600;
+  }
+
+  &:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+}
+
+.visually-hidden {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
