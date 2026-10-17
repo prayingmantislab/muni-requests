@@ -2,7 +2,7 @@
 :host {
   --text: #1b1b1f;
   --muted: #555a65;
-  --border: #c9ced8;
+  --border: #868c98; // ניגודיות 3:1 לפחות מול כל הרקעים (WCAG 1.4.11, רכיבי ממשק)
   --action: #b42318;
   --action-bg: #fef3f2;
   --overdue-bg: #fff4e5;
